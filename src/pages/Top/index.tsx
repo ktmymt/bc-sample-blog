@@ -7,6 +7,27 @@ import { Style } from '../../styles/pages/top.style'
 import { topGirlImgSrc, questionImgSrc, rightArrowImgSrc } from '@/images'
 import { colors } from '@/styles/global/colors.style'
 
+const normalizeSrc = (src: string) => {
+  return src.startsWith('/') ? src.slice(1) : src
+}
+
+const cloudflareLoader = ({
+  src,
+  width,
+  quality,
+}: {
+  src: string
+  width: number
+  quality?: number
+}) => {
+  const params = [`width=${width}`]
+  if (quality) {
+    params.push(`quality=${quality}`)
+  }
+  const paramsString = params.join(',')
+  return `/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`
+}
+
 const Top: NextPage = () => {
   return (
     <div>
@@ -37,7 +58,13 @@ const Top: NextPage = () => {
 
           <div css={Style.diagnoseContent}>
             <p>Q. 今すぐ転職しようと考えていますか？</p>
-            <Image src={topGirlImgSrc} width={100} height={100} alt="girl" />
+            <Image
+              loader={cloudflareLoader}
+              src={topGirlImgSrc}
+              width={100}
+              height={100}
+              alt="girl"
+            />
             <Link href="#">
               <a css={Style.diagnoseButton}>自分に合った転職サイトを診断する</a>
             </Link>
@@ -146,10 +173,22 @@ const ArticleLinkButton = ({
       <Link href={to}>
         <a css={style.link}>
           {isQuestion && (
-            <Image src={questionImgSrc} width={30} height={30} alt="" />
+            <Image
+              loader={cloudflareLoader}
+              src={questionImgSrc}
+              width={30}
+              height={30}
+              alt=""
+            />
           )}
           {text}
-          <Image src={rightArrowImgSrc} width={15} height={15} alt="" />
+          <Image
+            loader={cloudflareLoader}
+            src={rightArrowImgSrc}
+            width={15}
+            height={15}
+            alt=""
+          />
         </a>
       </Link>
     </div>
