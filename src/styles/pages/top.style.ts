@@ -40,6 +40,11 @@ export const Style = {
     margin: 0 auto;
     padding: 24px 16px;
   `,
+  diagnoseImage: css`
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  `,
   diagnoseButton: css`
     color: ${colors.white};
     background-color: ${colors.main};

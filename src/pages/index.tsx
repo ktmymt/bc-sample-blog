@@ -1,32 +1,10 @@
 import { css } from '@emotion/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import { Style } from '../../styles/pages/top.style'
-import { topGirlImgSrc, questionImgSrc, rightArrowImgSrc } from '@/images'
+import { topGirlImg, questionImg, rightArrowImg } from '@/images'
 import { colors } from '@/styles/global/colors.style'
-
-const normalizeSrc = (src: string) => {
-  return src.startsWith('/') ? src.slice(1) : src
-}
-
-const cloudflareLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src: string
-  width: number
-  quality?: number
-}) => {
-  const params = [`width=${width}`]
-  if (quality) {
-    params.push(`quality=${quality}`)
-  }
-  const paramsString = params.join(',')
-  return `/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`
-}
+import { Style } from '@/styles/pages/top.style'
 
 const Top: NextPage = () => {
   return (
@@ -58,13 +36,7 @@ const Top: NextPage = () => {
 
           <div css={Style.diagnoseContent}>
             <p>Q. 今すぐ転職しようと考えていますか？</p>
-            <Image
-              loader={cloudflareLoader}
-              src={topGirlImgSrc}
-              width={100}
-              height={100}
-              alt="girl"
-            />
+            <img css={Style.diagnoseImage} src={topGirlImg.src} alt="girl" />
             <Link href="#">
               <a css={Style.diagnoseButton}>自分に合った転職サイトを診断する</a>
             </Link>
@@ -172,23 +144,9 @@ const ArticleLinkButton = ({
     <div css={style.wrapper}>
       <Link href={to}>
         <a css={style.link}>
-          {isQuestion && (
-            <Image
-              loader={cloudflareLoader}
-              src={questionImgSrc}
-              width={30}
-              height={30}
-              alt=""
-            />
-          )}
+          {isQuestion && <img src={questionImg.src} alt="" />}
           {text}
-          <Image
-            loader={cloudflareLoader}
-            src={rightArrowImgSrc}
-            width={15}
-            height={15}
-            alt=""
-          />
+          <img src={rightArrowImg.src} alt="" />
         </a>
       </Link>
     </div>

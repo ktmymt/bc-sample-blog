@@ -1,5 +1,5 @@
-import questionImgSrc from './question.svg'
-import rightArrowImgSrc from './right-arrow.svg'
-import topGirlImgSrc from './top-girl.svg'
+import questionImg from './question.svg'
+import rightArrowImg from './right-arrow.svg'
+import topGirlImg from './top-girl.svg'
 
-export { questionImgSrc, rightArrowImgSrc, topGirlImgSrc }
+export { questionImg, rightArrowImg, topGirlImg }
