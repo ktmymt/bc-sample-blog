@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { colors } from '../../styles/colors.style'
+import { colors } from '../global/colors.style'
 
 export const Style = {
   wrapper: css`

@@ -1,27 +1,13 @@
 import { css } from '@emotion/react'
-import type { GetStaticProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Style } from './top.style'
+import { Style } from '../../styles/pages/top.style'
 import { topGirlImgSrc, questionImgSrc, rightArrowImgSrc } from '@/images'
-import { colors } from '@/styles/colors.style'
+import { colors } from '@/styles/global/colors.style'
 
-type Props = {
-  data: {
-    id: number
-    attributes: {
-      title: string
-      content: string
-      createdAt: string
-      updatedAt: string
-      publishedAt: string
-    }
-  }[]
-}
-
-const Top: NextPage<Props> = ({ data }) => {
-  // console.log(data)
+const Top: NextPage = () => {
   return (
     <div>
       <Head>
@@ -188,13 +174,6 @@ const SectionTitle = ({ text }: { text: string }) => {
       <h3 css={style.h3}>{text}</h3>
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await (await fetch('http://localhost:1337/api/articles')).json()
-  return {
-    props: data,
-  }
 }
 
 export default Top
